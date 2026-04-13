@@ -483,11 +483,24 @@
       });
 
       const preVenueHtml = preVenueParts.join('').replace(/\s+/g, ' ').trim();
-      const firstPeriodIndex = preVenueHtml.indexOf('.');
-      if (firstPeriodIndex === -1) return;
 
-      const authorsHtml = preVenueHtml.slice(0, firstPeriodIndex + 1).trim();
-      const titleHtml = preVenueHtml.slice(firstPeriodIndex + 1).trim().replace(/\.$/, '');
+      // Find the first sentence boundary that is not part of a name initial (e.g., "T.").
+      const sentenceBoundary = /\.\s+/g;
+      let splitIndex = -1;
+      let match;
+      while ((match = sentenceBoundary.exec(preVenueHtml)) !== null) {
+        const candidateIndex = match.index;
+        const prefix = preVenueHtml.slice(0, candidateIndex + 1).trim();
+        if (/\b[A-Z]\.$/.test(prefix)) {
+          continue;
+        }
+        splitIndex = candidateIndex;
+        break;
+      }
+      if (splitIndex === -1) return;
+
+      const authorsHtml = preVenueHtml.slice(0, splitIndex + 1).trim();
+      const titleHtml = preVenueHtml.slice(splitIndex + 1).trim().replace(/\.$/, '');
       const conferenceHtml = postVenueParts.join('').replace(/\s+/g, ' ').trim();
       const noteHtml = noteNodes.map((node) => node.outerHTML).join(' ');
 
