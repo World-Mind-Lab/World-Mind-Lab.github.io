@@ -570,20 +570,38 @@ p{ margin: 0.5rem 0; line-height: 1.7; color: rgba(234,240,255,0.90); }
 
 .alumni-list{
   margin: 0;
-  padding-left: 18px;
-  columns: 2;
-  column-gap: 30px;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
 }
 
 .alumni-list li{
-  break-inside: avoid;
-  margin: 6px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
   line-height: 1.45;
-  color: rgba(234,240,255,0.90);  /* ← add/change this */
+  color: rgba(234,240,255,0.90);
 }
 
-.alumni-list strong{
-  font-weight: 400;
+.alumni-name{
+  text-align: left;
+}
+
+.alumni-previous{
+  text-align: left;
+  color: rgba(234,240,255,0.90);
+}
+
+.alumni-current{
+  text-align: left;
+  color: var(--muted);
+}
+
+.alumni-current:not(:empty)::before{
+  content: "-> ";
+  color: rgba(234,240,255,0.80);
 }
 
 .team-grid{
@@ -803,7 +821,11 @@ table.mini th, table.mini td{ padding: 12px 12px; }
   .nav-open .nav-links{ display:flex; }
   .nav-links a{ width:100%; text-align:center; }
   .team-grid{ grid-template-columns: 1fr; }
-  .alumni-list{ columns: 1; }
+  .alumni-list li{
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .alumni-current{ text-align: left; }
   .organizer-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
   .collaboration-row{ grid-template-columns: 1fr; }
   .link-grid{ grid-template-columns: 1fr; }
