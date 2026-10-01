@@ -712,8 +712,14 @@ table.mini th, table.mini td{ padding: 12px 12px; }
 }
 
 
+.team-grid.collaboration-people{
+  grid-template-columns: repeat(2, minmax(0, 260px));
+  justify-content: center;
+}
+
 .collaboration-row{
   display:flex;
+  margin-top: 28px;
   justify-content:center;
   align-items:center;
   gap: 40px;
