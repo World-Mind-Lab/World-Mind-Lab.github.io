@@ -505,6 +505,7 @@ p{ margin: 0.5rem 0; line-height: 1.7; color: rgba(234,240,255,0.90); }
   color: rgba(234,240,255,0.90);
 }
 .bullets li{ margin: 10px 0; line-height: 1.55; }
+#abstract .bullets strong{ color: #fff; }
 
 .opening-divider{
   height: 1px;
